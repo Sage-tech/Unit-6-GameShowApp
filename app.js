@@ -109,32 +109,36 @@ checkWin();
 })
 
 function gameResetting(button) {
- var btnRestGame = document.createElement('BUTTON')
-vtnRestGame.textContent = 'Play Again';
-btnRestGame.className = 'reset';
-overlay.appendChild(vtnRestGame);
+  var btnResetGame = document.createElement('BUTTON');
+  btnResetGame.textContent = 'Play Again';
+  btnResetGame.className = 'reset';
+  overlay.appendChild(btnResetGame);
 
-btnRestGame.addEventListener('click', (e) => {
- overlay.style.display = 'none';
- btnRestGame.style.display = 'none';
- ul.innerHTML = '';
+  btnResetGame.addEventListener('click', (e) => {
+    overlay.style.display = 'none';
+    btnResetGame.style.display = 'none';
+    ul.innerHTML = '';
 
- function removeChosen();
- const removeChosen = document.querySelectorAll('chosen');
- for(let i = 0; i < removeChosen.length; i++) {
- removeChosen[i].classList.remove('chosen');
- removeChosen[i].src = 'images/liveHeart.png';
- }
- missed = 0;
+    function removeChosen() {
+      const removeChosen = document.querySelectorAll('.chosen');
+      for (let i = 0; i < removeChosen.length; i++) {
+        removeChosen[i].classList.remove('chosen');
+        removeChosen[i].disabled = false;
+      }
+    }
+    removeChosen();
 
- phraseArray = getRandomPhraseAsArray(phrases);
- addPhraseToDisplay(phraseArray);
+    const tries = document.querySelectorAll('.tries');
+    for (let j = 0; j < liveHeart.length; j++) {
+      liveHeart[j].className = 'tries';
+      triesImg[j].src = 'images/liveHeart.png';
+    }
+    missed = 0;
 
- overlay.querySelector('SPAN').remove();
-})
+    phraseArray = getRandomPhraseAsArray(phrases);
+    addPhraseToDisplay(phraseArray);
+
+    overlay.querySelector('SPAN').remove();
+  })
 }
-
-
-
-
 
