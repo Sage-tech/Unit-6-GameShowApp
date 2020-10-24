@@ -1,6 +1,3 @@
-
-
-
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const startGameButton = document.getElementsByClassName('btn__reset')[0];
@@ -10,42 +7,106 @@ let liveHeart = document.querySelectorAll('IMG');
 let triesImg = Array.from(document.querySelectorAll('.tries img'));
 const overlay = document.getElementById('overlay');
 
-const missed = 0;
+
+let missed = 0;
 const listItem = ul.children;
 
-const phrases= [
-
+const phrases = [
+  'buffalo bills',
+  'miami dolphins',
+  'new england patriots',
+  'new york jets',
+  'pittsburgh steelers',
+  'baltimore ravens',
+  'cleveland browns',
+  'cincinnati bengals',
+  'tennessee titans',
+  'indianapolis colts',
+  'houston texans',
+  'jacksonville jaguars',
+  'kansas city cheifs',
+  'las vegas raidars',
+  'denver broncos',
+  'los angeles chargers',
+  'dallas cowboys',
+  'philadelphia eagles',
+  'new york giants',
+  'washington redskins',
+  'chicago bears',
+  'green bay packers',
+  'detroit lions',
+  'minnesota vikings',
+  'tampa bay buccaneers',
+  'new orlean saints',
+  'carolina panthers',
+  'atlanta falcons',
+  'seattle seahawks',
+  'arizona cardinals',
+  'los angeles rams',
+  'san francisco forty niners',
 ];
 
-function startGame(){ 
-    const div = document.getElementById('overlay');
-    startGameButton.addEventListener('click', () => {
+function startGame() {
+  const div = document.getElementById('overlay');
+  startGameButton.addEventListener('click', () => {
     div.style.display='none';
-})
+
+  })
 };
 startGame();
 
+
+
 function getRandomPhraseAsArray(arr){
- return phrases[Math.floor(Math.random() * phrases.length)].split('');
+  return phrases[Math.floor(Math.random() * phrases.length)].split('');
 };
 
-function adddPhraseToDisplay(arr){
-    for (let i = 0; i < arr.length; i++){
+function addPhraseToDisplay(arr) {
+
+  for (let i = 0; i < arr.length; i++) {
     const listItem = document.createElement('li');
     listItem.textContent = arr[i];
-    ul.appendChild(listItem)
-    if (listItem.textContent == ''){
-    listItem.className = 'space';
+    ul.appendChild(listItem);
+    if (listItem.textContent == ' ') {
+      listItem.className = 'space';
     } else {
-     listItem.className = 'letter';
+        listItem.className = 'letter';
     }
-    }
+  }
 }
 
+let phraseArray = getRandomPhraseAsArray();
+addPhraseToDisplay(phraseArray);
+
+qwerty.addEventListener('click', (e) => {
+  if (e.target.tagName == 'BUTTON' )  {
+    function checkLetter(arr){
+      e.target.classList.add('chosen');
+        const checkLetter = document.getElementsByClassName('letter');
+        let match = null;
+      for (let i = 0; i < checkLetter.length; i++) {
+        if(checkLetter[i].textContent == arr) {
+          checkLetter[i].classList.add('show');
+          match = arr;
+        }
+      }
+      return match;
+    }
+  }
 
 
+  const letterFound = checkLetter(e.target.textContent);
 
+  if (e.target.className == 'chosen'){
+    e.target.disabled = true;
+  }
 
+  if(letterFound == null){
+    liveHeart[missed].setAttribute("src", "images/lostHeart.png");
+    missed +=1;
+  }
+checkWin();
+})
 
 
 
