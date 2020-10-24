@@ -108,7 +108,31 @@ qwerty.addEventListener('click', (e) => {
 checkWin();
 })
 
+function gameResetting(button) {
+ var btnRestGame = document.createElement('BUTTON')
+vtnRestGame.textContent = 'Play Again';
+btnRestGame.className = 'reset';
+overlay.appendChild(vtnRestGame);
 
+btnRestGame.addEventListener('click', (e) => {
+ overlay.style.display = 'none';
+ btnRestGame.style.display = 'none';
+ ul.innerHTML = '';
+
+ function removeChosen();
+ const removeChosen = document.querySelectorAll('chosen');
+ for(let i = 0; i < removeChosen.length; i++) {
+ removeChosen[i].classList.remove('chosen');
+ removeChosen[i].src = 'images/liveHeart.png';
+ }
+ missed = 0;
+
+ phraseArray = getRandomPhraseAsArray(phrases);
+ addPhraseToDisplay(phraseArray);
+
+ overlay.querySelector('SPAN').remove();
+})
+}
 
 
 
