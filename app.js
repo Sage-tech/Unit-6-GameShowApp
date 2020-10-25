@@ -12,38 +12,46 @@ let missed = 0;
 const listItem = ul.children;
 
 const phrases = [
-  'buffalo bills',
-  'miami dolphins',
-  'new england patriots',
-  'new york jets',
-  'pittsburgh steelers',
-  'baltimore ravens',
-  'cleveland browns',
-  'cincinnati bengals',
-  'tennessee titans',
-  'indianapolis colts',
-  'houston texans',
-  'jacksonville jaguars',
-  'kansas city cheifs',
-  'las vegas raidars',
-  'denver broncos',
-  'los angeles chargers',
-  'dallas cowboys',
-  'philadelphia eagles',
-  'new york giants',
-  'washington redskins',
-  'chicago bears',
-  'green bay packers',
-  'detroit lions',
-  'minnesota vikings',
-  'tampa bay buccaneers',
-  'new orlean saints',
-  'carolina panthers',
-  'atlanta falcons',
-  'seattle seahawks',
-  'arizona cardinals',
-  'los angeles rams',
-  'san francisco forty niners',
+  'artificial tree',
+  'candy cane',
+  'christmas card',
+  'christmas eve',
+  'christmas carol',
+  'family reunion',
+  'gingerbread man',
+  'hot chocolate',
+  'ice skates',
+  'jingle bells',
+  'joyeux noel',
+  'jack frost',
+  'kris kringle',
+  'merry christmas',
+  'mince pie',
+  'pumpkin pie',
+  'north pole',
+  'pine tree',
+  'plum pudding',
+  'popcorn string',
+  'santa claus',
+  'sleigh bells',
+  'saint nicholas',
+  'wrapping paper',
+  'yule log',
+  'christmas wish',
+  'ebenezer scrooge',
+  'feliz navidad',
+  'gift box',
+  'sliver bells',
+  'snow angel',
+  'winter wonderland',
+  'yorkshire pudding',
+  'naughty list',
+  'nice list',
+  'sleigh ride',
+  'roasting chestnuts',
+  'tree lighting',
+  'gift exchange',
+  'christmas dinner',
 ];
 
 function startGame() {
@@ -142,3 +150,39 @@ function gameResetting(button) {
   })
 }
 
+function revealTheWord() {
+  let textWin = document.createElement('span');
+  textWin.textContent = 'CORRECT!'
+  textWin.className = 'finalText';
+  overlay.appendChild(textWin);
+}
+
+function revealTheWordLose() {
+ let textLose = document.createElement('span');
+ textLose.textContent = `Sorry! The correct answer was ${phraseArray.join('').toUpperCase()}`;
+ textLose.className = 'finalText';
+ overlay.appendChild(textLose);
+}
+
+function checkWin(arr) {
+  let liLetter = document.createElement('letter');
+  let liShow = document.getElementsByClassName('show');
+
+  if (liLetter == liShow.length) {
+  overlay.style.display = 'flex';
+  overlay.className = 'win';
+  document.querySelector("h2").innerHTML = "Congratulations,YOU WON!";
+
+  revealTheWord();
+  startGameButton.style.display = 'none';
+  gameResetting();
+  } else if (missed > 4 ){
+  overlay.style.display = 'flex';
+  overlay.className = 'lose';
+  document.querySelector("h2").innerHTML = "Maybe Next Time!";
+
+  revealTheWordLose();
+  startGameButton.style.display = 'none';
+  gameResetting();
+  }
+  }
