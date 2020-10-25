@@ -165,13 +165,13 @@ function revealTheWordLose() {
 }
 
 function checkWin(arr) {
-  let liLetter = document.createElement('letter');
+  let liLetter = document.getElementsByClassName('letter');
   let liShow = document.getElementsByClassName('show');
 
-  if (liLetter == liShow.length) {
-  overlay.style.display = 'flex';
-  overlay.className = 'win';
-  document.querySelector("h2").innerHTML = "Congratulations,YOU WON!";
+  if (liLetter.length == liShow.length) {
+    overlay.style.display = 'flex';
+    overlay.className = 'win';
+    document.querySelector("h2").innerHTML = "Congratulations, YOU WON!";
 
   revealTheWord();
   startGameButton.style.display = 'none';
